@@ -3,6 +3,15 @@
 ## Environment decision
 AWS Robomaker Small Warehouse was too heavy, so switched to a lightweight custom warehouse in Gazebo Harmonic for faster load times.
 
+## Highlights
+1. Dynamic Obstacles and Avoidance
+2. Tuned to pass through narrow alleys
+3. Fused Odometry through EKF
+4. Finer costmap resolution and misc adjustments for close space navigation
+5. Smoothened Path output from the Global Planner
+6. Used a separate map and navigation world wherein the world had dynamic obstacles.
+
+
 ## Videos
 
 ### Navigation
