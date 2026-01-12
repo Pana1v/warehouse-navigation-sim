@@ -30,9 +30,6 @@ install(DIRECTORY launch worlds urdf rviz config maps
 
 install(PROGRAMS 
   scripts/patrol_controller.py
-  scripts/warehouse_nav_server.py
-  scripts/odom_to_tf.py
-  scripts/ground_truth_odom.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

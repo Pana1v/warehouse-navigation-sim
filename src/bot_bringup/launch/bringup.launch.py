@@ -285,18 +285,18 @@ def generate_launch_description():
     )
 
     # 16. Warehouse Navigation Server (delayed start)
-    warehouse_nav_server = TimerAction(
-        period=9.0,  # Wait for Nav2 to fully start
-        actions=[
-            Node(
-                package='bot_bringup',
-                executable='warehouse_nav_server.py',
-                name='warehouse_nav_server',
-                output='screen',
-                parameters=[{'use_sim_time': True}]
-            )
-        ]
-    )
+    # warehouse_nav_server = TimerAction(
+    #     period=9.0,  # Wait for Nav2 to fully start
+    #     actions=[
+    #         Node(
+    #             package='bot_bringup',
+    #             executable='warehouse_nav_server.py',
+    #             name='warehouse_nav_server',
+    #             output='screen',
+    #             parameters=[{'use_sim_time': True}]
+    #         )
+    #     ]
+    # )
 
     # 17. Patrol Controller (Moving Box)
     patrol_controller = Node(
@@ -363,7 +363,7 @@ def generate_launch_description():
         rviz,
 
         # Custom navigation server
-        warehouse_nav_server,
+        # warehouse_nav_server,
 
         # Patrol Controller
         patrol_controller
