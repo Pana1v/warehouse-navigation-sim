@@ -15,8 +15,6 @@ AWS Robomaker Small Warehouse was too heavy, so switched to a lightweight custom
 
 # Run Instructions: Warehouse Navigation Sim
 
-Follow these steps to build and launch the autonomous warehouse simulation.
-
 ## 1. Prerequisites
 Ensure the following are installed and configured:
 
@@ -75,9 +73,8 @@ ros2 launch bot_bringup bringup.launch.py
 ---
 
 ## 4. Restarting the Simulation (CRITICAL)
-If you need to restart the simulation, you **must** kill all lingering Gazebo and ROS processes first to avoid conflicts. The standard `Ctrl+C` often leaves background processes running.
+If you need to restart the simulation, please kill all lingering Gazebo and ROS processes first to avoid conflicts. The standard `Ctrl+C` often leaves background processes running.
 
-**Always run this before launching again:**
 ```bash
 bash kill_processes.sh
 ```
