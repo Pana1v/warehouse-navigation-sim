@@ -13,6 +13,93 @@ AWS Robomaker Small Warehouse was too heavy, so switched to a lightweight custom
 7. Used a separate map and navigation world wherein the world had dynamic obstacles.
 
 
+# Run Instructions: Warehouse Navigation Sim
+
+Follow these steps to build and launch the autonomous warehouse simulation.
+
+## 1. Prerequisites
+Ensure the following are installed and configured:
+
+### Gazebo Harmonic
+Verify you have Gazebo Harmonic installed:
+```bash
+gz sim --version
+# Output should be >= 8.0.0 (Harmonic)
+```
+
+### Cyclone DDS
+This project requires `Cyclone DDS` for reliable communication between ROS 2 and Gazebo.
+1.  **Install** (if not present):
+    ```bash
+    sudo apt install ros-humble-rmw-cyclonedds-cpp
+    ```
+2.  **Verify Configuration**:
+    ```bash
+    echo $RMW_IMPLEMENTATION
+    # Output MUST be: rmw_cyclonedds_cpp
+    ```
+    If not, run:
+    ```bash
+    export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+    ```
+
+---
+
+## 2. Build the Project
+Navigate to your workspace root and build the `bot_bringup` package.
+
+```bash
+cd ~/exp/del_ws
+colcon build --symlink-install --packages-select bot_bringup
+source install/setup.bash
+```
+
+*   `--symlink-install`: Allows you to edit Python scripts and config files (like Params/URDFs) without rebuilding.
+*   `--packages-select`: Only builds the relevant package to save time.
+
+---
+
+## 3. Run the Simulation
+Use the `bringup.launch.py` script to start the entire stack (Gazebo, Nav2, Robot).
+
+```bash
+# Terminal 1: Main Simulation Launch
+ros2 launch bot_bringup bringup.launch.py
+```
+
+### What to Expect:
+1.  **Gazebo** will open with the `simple_warehouse.sdf` world.
+2.  **RViz2** will launch showing the map and robot.
+3.  **Localization**: The robot should localize automatically (AMCL + EKF).
+
+---
+
+## 4. Restarting the Simulation (CRITICAL)
+If you need to restart the simulation, you **must** kill all lingering Gazebo and ROS processes first to avoid conflicts. The standard `Ctrl+C` often leaves background processes running.
+
+**Always run this before launching again:**
+```bash
+bash kill_processes.sh
+```
+
+---
+
+## 5. Operational Commands
+
+### Teleoperate (Manual Control)
+If you want to drive manually to test physics/mapping:
+```bash
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
+
+### Send Navigation Goals
+You can use the **2D Goal Pose** tool in RViz2 to send the robot to any location on the map.
+
+## 5. Kill Processes before restart 
+```bash
+bash kill_processes.sh
+```
+
 ## Videos
 
 ### Navigation
